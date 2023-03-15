@@ -65,15 +65,15 @@ async function importPublicKey(): Promise<CryptoKey | null> {
   return key
 }
 
-const stringifyAndBufferifyData = (data: any) => {
+const stringifyAndBufferifyData = (data: any): ArrayBufferLike => {
   const stringified = JSON.stringify(data, deterministicReplacer)
   const toUtf8 = strToUTF8Arr(stringified)
   const toBase64 = base64EncArr(toUtf8)
   const toArrayBuffer = textToUi8Arr(toBase64)
-  return toArrayBuffer
+  return toArrayBuffer.buffer
 }
 
-async function verifyIfIsValid(pub: CryptoKey, sig: BufferSource, data: BufferSource) {
+async function verifyIfIsValid(pub: CryptoKey, sig: ArrayBufferLike, data: ArrayBufferLike) {
   return crypto.subtle.verify(keyConfig, pub, sig, data).catch((e) => {
     console.log('error validation:', e)
     return false
