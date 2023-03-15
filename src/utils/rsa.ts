@@ -15,7 +15,7 @@ const keyConfig = {
   publicExponent: new Uint8Array([0x01, 0x00, 0x01])
 }
 
-function textToArrayBuffer(text: string) {
+function textToUi8Arr(text: string): Uint8Array {
   let bufView = new Uint8Array(text.length)
   for (let i = 0; i < text.length; i++) {
     bufView[i] = text.charCodeAt(i)
@@ -25,10 +25,10 @@ function textToArrayBuffer(text: string) {
 
 function base64StringToArrayBuffer(b64str: string): ArrayBufferLike {
   const byteStr = window.atob(b64str)
-  return textToArrayBuffer(byteStr).buffer
+  return textToUi8Arr(byteStr).buffer
 }
 
-function convertPemToBinary(pem: string) {
+function convertPemToBinary(pem: string): ArrayBufferLike {
   const lines = pem.split('\n')
   let encoded = ''
   for (let i = 0; i < lines.length; i++) {
@@ -70,7 +70,7 @@ const stringifyAndBufferifyData = (data: any) => {
   const stringified = JSON.stringify(data, deterministicReplacer)
   const toUtf8 = strToUTF8Arr(stringified)
   const toBase64 = base64EncArr(toUtf8)
-  const toArrayBuffer = textToArrayBuffer(toBase64)
+  const toArrayBuffer = textToUi8Arr(toBase64)
   return toArrayBuffer
 }
 
