@@ -21,7 +21,7 @@ export default function Home() {
 
       /**
        * This HAS_PUBLIC_KEY constant is being used just to prevent
-       * the code breaking in environments where they key is not set yet.
+       * the code breaking in environments where the key is not set yet.
        * You can remove the first half of the OR statement if you want to enforce
        * environments to have the key set in order to even work.
        */
