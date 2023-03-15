@@ -1,6 +1,5 @@
 import { base64EncArr, deterministicReplacer, strToUTF8Arr } from "./helpers"
 
-// const publicKeyBase64 = process.env.REACT_APP_PUBLIC_KEY_BASE64
 const PUBLIC_KEY = process.env.NEXT_PUBLIC_PUBLIC_KEY
 
 export const HAS_PUBLIC_KEY = !!PUBLIC_KEY
@@ -10,7 +9,7 @@ const keyConfig = {
   hash: {
     name: "SHA-256"
   },
-  modulusLength: 3072,
+  modulusLength: 3072, //The same number of bits used to create the key
   extractable: false,
   publicExponent: new Uint8Array([0x01, 0x00, 0x01])
 }
