@@ -16,8 +16,11 @@ The private key goes to the backend, and the public key goes to the frontend.
 In this project, you can duplicate the `.env.local.example` file and rename it to `.env.local`.
 
 In your env files, use double-quotes around the variable's value to support the `\n` character, place a `\n` at the end of each line, and then reduce the whole key into a single line, like so:
+
 `-----BEGIN RSA PRIVATE KEY-----\nFiRsTlInE\nSeCoNdLiNe\nThIrDlInE\nSoOnAnDSoFoRtH\n-----END RSA PRIVATE KEY-----`
+
 There is an `.env.local.example` file with an example to help you understand, along with an example pair of keys.
+
 # The example keys will work, but you OUGHT to change them for a newly generated pair when implementing this.
 
 Finally, run the development server:
