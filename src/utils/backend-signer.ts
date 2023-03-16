@@ -2,7 +2,7 @@ import crypto from 'crypto'
 import { deterministicReplacer } from '@/utils/helpers'
 import { NextApiResponse } from 'next'
 
-export const signContent = async (content: any) => {
+export const signContent = (content: any) => {
   const privateKey = process.env.PRIVATE_KEY
   if (!privateKey) {
     throw new Error('The environmental variable PRIVATE_KEY must be set')
@@ -24,7 +24,7 @@ export type ResponseData = {
 }
 
 export const respondSignedContent = async (res: NextApiResponse<ResponseData>, code: number = 200, content: any = {}) => {
-  const signature = await signContent(content)
+  const signature = signContent(content)
   /**
     * If you uncomment this line, simulating an attempt at
     * tampering with the data, the request will be rejected.
