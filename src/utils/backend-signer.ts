@@ -23,7 +23,7 @@ export type ResponseData = {
   signature: string
 }
 
-export const respondSignedContent = async (res: NextApiResponse<ResponseData>, code: number = 200, content: any = {}) => {
+export const respondSignedContent = (res: NextApiResponse<ResponseData>, code: number = 200, content: any = {}): void => {
   const signature = signContent(content)
   /**
     * If you uncomment this line, simulating an attempt at
