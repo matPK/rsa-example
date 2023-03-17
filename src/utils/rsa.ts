@@ -27,7 +27,7 @@ function base64StringToArrayBuffer(b64str: string): ArrayBufferLike {
   return textToUi8Arr(byteStr).buffer
 }
 
-function convertPemToBinary(pem: string): ArrayBufferLike {
+function convertPemToArrayBuffer(pem: string): ArrayBufferLike {
   const lines = pem.split('\n')
   let encoded = ''
   for (let i = 0; i < lines.length; i++) {
@@ -51,10 +51,10 @@ async function importPublicKey(): Promise<CryptoKey | null> {
   if (!PUBLIC_KEY) {
     return null
   }
-  const binaryPublicKey = convertPemToBinary(PUBLIC_KEY)
+  const arrBufPublicKey = convertPemToArrayBuffer(PUBLIC_KEY)
   const key = await crypto.subtle.importKey(
     "spki", //has to be spki for importing public keys
-    binaryPublicKey,
+    arrBufPublicKey,
     keyConfig,
     false, //false because we aren't exporting the key, just using it
     ["verify"] //has to be "verify" because public keys can't "sign"
