@@ -8,6 +8,7 @@ export default function Home() {
   const [isLoading, setIsLoading] = useState<boolean>(false)
   const [isRejected, setIsRejected] = useState<boolean>(false)
 
+  // PUT THIS KIND OF CODE INTO A DIFFERENT SPA WHICH ONLY ADMIN USERS CAN ACCESS!
   async function adminDeleteAllAccounts() {
     console.log("deleting all accounts...")
     const res = await fetch('/api/admin-delete-all-accounts')
@@ -66,6 +67,11 @@ export default function Home() {
         <hr/>
         <div>
         {user?.isAdmin ? (
+          /* i think this is what your application had, which the ethical hacker 
+              enabled by modifying the user using burpsuite?
+              well I can do the same, totally bypassing your additional layer of security.
+              it proves that you can NEVER TRUST THE BROWSER.
+            */
           <button onClick={adminDeleteAllAccounts}>admin functionality</button>
         ) : (
             /* not admin */
