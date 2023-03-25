@@ -40,7 +40,7 @@ If you try to modify this data after it was signed, or before it is verified, an
 
 ----
 
-# Proof that this is useless
+# Proof that the addition of public/private key encryption like described above is useless
 
     # use a docker image to protect the host from scripts that we don't know
     docker run -it --rm --name rsa-example -p 3000:3000 -v /shared2/rsa-example:/project maxant/jdk17pythonnode18
@@ -52,5 +52,12 @@ If you try to modify this data after it was signed, or before it is verified, an
 
     npm run dev
 
+then start up the proxy as described in [proxy/README.md](proxy/README.md)
+
+navigate to the "man in the middle" at http://localhost:4000
+
+the user john doe is loaded, but the proxy injects some code that is executed after the API response is decrypted, so that the user is given the property `isAdmin` with the value `true`, so that the admin button is enabled.
+
+note that i don't have to bother with the injection, because studying the code loaded into the browser from `index.js` already shows me that there is an API call using `fetch(\"/api/admin-delete-all-accounts\)`, so as a hacker, I would start to investigate that. modifying the user so that I can can see a button in the browser, is not necessary. THE ONLY WAY TO PROTECT YOURSELF IS ZERO TRUST IN THE SERVER!!
 
 
