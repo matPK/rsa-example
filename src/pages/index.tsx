@@ -8,6 +8,16 @@ export default function Home() {
   const [isLoading, setIsLoading] = useState<boolean>(false)
   const [isRejected, setIsRejected] = useState<boolean>(false)
 
+  async function adminDeleteAllAccounts() {
+    console.log("deleting all accounts...")
+    const res = await fetch('/api/admin-delete-all-accounts')
+    if(res.status == 204) {
+      alert('deleted all accounts!')
+    } else {
+      alert('unexpected response: ' + res.status)
+    }
+  }
+
   useEffect(() => {
     (async function () {
       setIsLoading(true)
@@ -44,6 +54,7 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main>
+        <div>
         Response:
         {isLoading ? (
           <div>Loading...</div>
@@ -51,6 +62,18 @@ export default function Home() {
           <div>{user?.name}</div>
         )}
         {isRejected && 'THE REQUEST WAS REJECTED'}
+        </div>
+        <hr/>
+        <div>
+        {user?.isAdmin ? (
+          <button onClick={adminDeleteAllAccounts}>admin functionality</button>
+        ) : (
+            /* not admin */
+            <span></span>
+        )}
+
+        </div>
+
       </main>
     </>
   )

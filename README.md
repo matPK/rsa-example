@@ -37,3 +37,20 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 
 If you see the name `John Doe`, the signature and verification worked properly.
 If you try to modify this data after it was signed, or before it is verified, an error will appear.
+
+----
+
+# Proof that this is useless
+
+    # use a docker image to protect the host from scripts that we don't know
+    docker run -it --rm --name rsa-example -p 3000:3000 -v /shared2/rsa-example:/project maxant/jdk17pythonnode18
+
+    npm install
+
+    rm -f .env.local
+    cp .env.local.example .env.local
+
+    npm run dev
+
+
+
