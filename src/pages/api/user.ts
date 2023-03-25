@@ -7,6 +7,6 @@ export default function handler(
   req: NextApiRequest,
   res: NextApiResponse<ResponseData>
 ) {
-  const user: User = { name: 'John Doe', isAdmin: false }
+  const user: User = { name: 'John Doe', isAdmin: false } // THE USER IS NOT ADMIN, BUT THE INJECTION WILL CHANGE THAT!!
   return respondSignedContent(res, 200, user)  
 }
